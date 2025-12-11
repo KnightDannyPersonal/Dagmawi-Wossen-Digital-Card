@@ -138,7 +138,7 @@
         /* --- Brand Colors --- */
 
         /* Portfolio (Dark Blue/Slate) */
-        .portfolio {
+        .payment {
             background-color: #0f172a;
         }
 
@@ -180,6 +180,100 @@
         .jiji {
             background-color: #00b53f;
         }
+
+        /* Payment Dropdown Styles */
+        .payment-wrapper {
+            position: relative;
+        }
+
+        .payment-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f1f5f9;
+            border-radius: 0 0 12px 12px;
+            margin-top: -10px;
+            /* Slight overlap visually or connect */
+            padding: 0 10px;
+        }
+
+        .payment-dropdown.show {
+            max-height: 400px;
+            /* Enough for a few options */
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .bank-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.1s;
+        }
+
+        .bank-item:active {
+            transform: scale(0.98);
+        }
+
+        .bank-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .bank-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: #334155;
+        }
+
+        .account-num {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 2px;
+            font-family: monospace;
+        }
+
+        .copy-icon {
+            color: #94a3b8;
+            transition: color 0.2s;
+        }
+
+        .bank-item:hover .copy-icon {
+            color: var(--primary-color);
+        }
+
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            font-size: 16px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.5s, bottom 0.5s;
+        }
+
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
+        }
     </style>
 </head>
 
@@ -200,9 +294,41 @@
             </a>
 
             <div class="links-container">
-                <!-- <a href="#" class="link-btn portfolio">
-                    <i class="fas fa-globe"></i> View Portfolio
-                </a> -->
+                <div class="payment-wrapper">
+                    <a href="javascript:void(0)" class="link-btn payment" onclick="togglePayment()">
+                        <span>💲Payment Methods</span>
+                        <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.9rem;"></i>
+                    </a>
+
+                    <div class="payment-dropdown" id="paymentDropdown">
+                        <!-- CBE -->
+                        <div class="bank-item" onclick="copyToClipboard('1000123456789', 'CBE')">
+                            <div class="bank-info">
+                                <span class="bank-name">CBE</span>
+                                <span class="account-num">1000123456789</span>
+                            </div>
+                            <i class="far fa-copy copy-icon"></i>
+                        </div>
+
+                        <!-- Telebirr -->
+                        <div class="bank-item" onclick="copyToClipboard('0911234567', 'Telebirr')">
+                            <div class="bank-info">
+                                <span class="bank-name">Telebirr</span>
+                                <span class="account-num">0911234567</span>
+                            </div>
+                            <i class="far fa-copy copy-icon"></i>
+                        </div>
+
+                        <!-- Dashen -->
+                        <div class="bank-item" onclick="copyToClipboard('123456789', 'Dashen Bank')">
+                            <div class="bank-info">
+                                <span class="bank-name">Dashen Bank</span>
+                                <span class="account-num">123456789</span>
+                            </div>
+                            <i class="far fa-copy copy-icon"></i>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- <a href="#" class="link-btn linkedin">
                     <i class="fab fa-linkedin"></i> LinkedIn
@@ -234,13 +360,48 @@
                 <a href="https://jiji.com.et/sellerpage-kFrf9kSLF3qNXmDnSl2dOCRF" class="link-btn jiji">
                     <i class="fab fa-jiji"></i> Jiji
                 </a>
+
                 <a href="mailto:dagmawiwossendemewoz@gmail.com" class="link-btn email">
                     <i class="fas fa-envelope"></i> Email Me
                 </a>
+
+
             </div>
         </div>
     </div>
 
+
+
+    <div id="toast">Details copied to clipboard!</div>
+
+    <script>
+        function togglePayment() {
+            const dropdown = document.getElementById('paymentDropdown');
+            dropdown.classList.toggle('show');
+            const icon = document.querySelector('.payment .fa-chevron-down');
+            if (dropdown.classList.contains('show')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+            icon.style.transition = 'transform 0.3s';
+        }
+
+        function copyToClipboard(text, bankName) {
+            navigator.clipboard.writeText(text).then(function () {
+                showToast(`${bankName} details copied!`);
+            }, function (err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.className = "show";
+            setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    </script>
 </body>
 
 </html>
