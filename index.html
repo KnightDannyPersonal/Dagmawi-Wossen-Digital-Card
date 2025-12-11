@@ -113,7 +113,7 @@
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         .link-btn {
@@ -128,6 +128,7 @@
             transition: transform 0.2s, opacity 0.2s;
             gap: 10px;
             font-size: 1rem;
+            position: relative;
         }
 
         .link-btn:hover {
@@ -192,7 +193,7 @@
             transition: max-height 0.3s ease-out;
             background-color: #f1f5f9;
             border-radius: 0 0 12px 12px;
-            margin-top: -10px;
+            /* margin-top: -10px; */
             /* Slight overlap visually or connect */
             padding: 0 10px;
         }
@@ -297,33 +298,42 @@
                 <div class="payment-wrapper">
                     <a href="javascript:void(0)" class="link-btn payment" onclick="togglePayment()">
                         <span>💲Payment Methods</span>
-                        <i class="fas fa-chevron-down" style="margin-left: auto; font-size: 0.9rem;"></i>
+                        <i class="fas fa-chevron-down" style="position: absolute; right: 15px; font-size: 0.9rem;"></i>
                     </a>
 
                     <div class="payment-dropdown" id="paymentDropdown">
                         <!-- CBE -->
-                        <div class="bank-item" onclick="copyToClipboard('1000123456789', 'CBE')">
+                        <div class="bank-item" onclick="copyToClipboard('1000205957597', 'CBE')">
                             <div class="bank-info">
                                 <span class="bank-name">CBE</span>
-                                <span class="account-num">1000123456789</span>
+                                <span class="account-num">1000205957597</span>
                             </div>
                             <i class="far fa-copy copy-icon"></i>
                         </div>
 
                         <!-- Telebirr -->
-                        <div class="bank-item" onclick="copyToClipboard('0911234567', 'Telebirr')">
+                        <div class="bank-item" onclick="copyToClipboard('0960796565', 'Telebirr')">
                             <div class="bank-info">
                                 <span class="bank-name">Telebirr</span>
-                                <span class="account-num">0911234567</span>
+                                <span class="account-num">0960796565</span>
                             </div>
                             <i class="far fa-copy copy-icon"></i>
                         </div>
 
-                        <!-- Dashen -->
-                        <div class="bank-item" onclick="copyToClipboard('123456789', 'Dashen Bank')">
+                        <!-- Awash -->
+                        <div class="bank-item" onclick="copyToClipboard('123456789', 'Awash Bank')">
                             <div class="bank-info">
-                                <span class="bank-name">Dashen Bank</span>
-                                <span class="account-num">123456789</span>
+                                <span class="bank-name">Awash Bank</span>
+                                <span class="account-num">013200800858901
+                            </div>
+                            <i class="far fa-copy copy-icon"></i>
+                        </div>
+
+                        <!-- Zemen -->
+                        <div class="bank-item" onclick="copyToClipboard('123456789', 'Zemen Bank')">
+                            <div class="bank-info">
+                                <span class="bank-name">Zemen Bank</span>
+                                <span class="account-num">1711011172828010
                             </div>
                             <i class="far fa-copy copy-icon"></i>
                         </div>
