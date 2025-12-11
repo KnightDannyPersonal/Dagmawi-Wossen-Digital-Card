@@ -250,6 +250,64 @@
             color: var(--primary-color);
         }
 
+        /* Bank Item Specific Styling */
+        .bank-item .bank-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 2px solid white;
+            background-color: white;
+        }
+
+        .bank-item.colored {
+            color: white;
+            border: none;
+        }
+
+        .bank-item.colored .bank-name {
+            color: white;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .bank-item.colored .account-num {
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .bank-item.colored .copy-icon {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .bank-item.colored:hover .copy-icon {
+            color: white;
+        }
+
+        /* Specific Bank Colors */
+        .bank-cbe {
+            background-color: #95298e;
+        }
+
+        .bank-telebirr {
+            background: linear-gradient(135deg, #106197 0%, #106197 60%, #ffffff 100%);
+        }
+
+        /* Adjust text for Telebirr slightly if needed, but shadow helps */
+        .bank-telebirr .bank-name,
+        .bank-telebirr .account-num {
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .bank-awash {
+            background: linear-gradient(135deg, #120a80, #ffac3d);
+        }
+
+        .bank-zemen {
+            background: linear-gradient(135deg, #ff0000, #000000);
+        }
+
+
         /* Toast Notification */
         #toast {
             visibility: hidden;
@@ -303,7 +361,8 @@
 
                     <div class="payment-dropdown" id="paymentDropdown">
                         <!-- CBE -->
-                        <div class="bank-item" onclick="copyToClipboard('1000205957597', 'CBE')">
+                        <div class="bank-item bank-cbe colored" onclick="copyToClipboard('1000205957597', 'CBE')">
+                            <img src="cbe.png" alt="CBE" class="bank-logo">
                             <div class="bank-info">
                                 <span class="bank-name">CBE</span>
                                 <span class="account-num">1000205957597</span>
@@ -312,7 +371,9 @@
                         </div>
 
                         <!-- Telebirr -->
-                        <div class="bank-item" onclick="copyToClipboard('0960796565', 'Telebirr')">
+                        <div class="bank-item bank-telebirr colored"
+                            onclick="copyToClipboard('0960796565', 'Telebirr')">
+                            <img src="telebirr..png" alt="Telebirr" class="bank-logo">
                             <div class="bank-info">
                                 <span class="bank-name">Telebirr</span>
                                 <span class="account-num">0960796565</span>
@@ -321,19 +382,21 @@
                         </div>
 
                         <!-- Awash -->
-                        <div class="bank-item" onclick="copyToClipboard('123456789', 'Awash Bank')">
+                        <div class="bank-item bank-awash colored" onclick="copyToClipboard('123456789', 'Awash Bank')">
+                            <img src="Awash.png" alt="Awash" class="bank-logo">
                             <div class="bank-info">
                                 <span class="bank-name">Awash Bank</span>
-                                <span class="account-num">013200800858901
+                                <span class="account-num">013200800858901</span>
                             </div>
                             <i class="far fa-copy copy-icon"></i>
                         </div>
 
                         <!-- Zemen -->
-                        <div class="bank-item" onclick="copyToClipboard('123456789', 'Zemen Bank')">
+                        <div class="bank-item bank-zemen colored" onclick="copyToClipboard('123456789', 'Zemen Bank')">
+                            <img src="Zemen.png" alt="Zemen" class="bank-logo">
                             <div class="bank-info">
                                 <span class="bank-name">Zemen Bank</span>
-                                <span class="account-num">1711011172828010
+                                <span class="account-num">1711011172828010</span>
                             </div>
                             <i class="far fa-copy copy-icon"></i>
                         </div>
